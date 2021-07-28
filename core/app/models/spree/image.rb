@@ -3,6 +3,8 @@ module Spree
     include Configuration::ActiveStorage
     include Rails.application.routes.url_helpers
 
+    default_scope { includes(attachment_attachment: :blob) }
+
     # In Rails 5.x class constants are being undefined/redefined during the code reloading process
     # in a rails development environment, after which the actual ruby objects stored in those class constants
     # are no longer equal (subclass == self) what causes error ActiveRecord::SubclassNotFound
